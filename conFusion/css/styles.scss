@@ -73,3 +73,25 @@ body {
   position: absolute;
   bottom: 0px;
 }
+
+#login {
+  cursor: pointer;
+}
+
+#loginModal, #reserveModal{
+  .modal-header{
+    background: $background-dark;
+    color: floralwhite;
+    .close{
+      color: $lt-gray;
+    }
+    .close:hover {
+      color: floralwhite;
+    }
+  }
+  .modal-body {
+    background: $background-pale;
+  }
+}
+
+

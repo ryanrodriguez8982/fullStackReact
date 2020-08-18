@@ -51,3 +51,17 @@ body {
   right: 0px;
   position: absolute;
   bottom: 0px; }
+
+#login {
+  cursor: pointer; }
+
+#loginModal .modal-header, #reserveModal .modal-header {
+  background: #512da8;
+  color: floralwhite; }
+  #loginModal .modal-header .close, #reserveModal .modal-header .close {
+    color: #ddd; }
+  #loginModal .modal-header .close:hover, #reserveModal .modal-header .close:hover {
+    color: floralwhite; }
+
+#loginModal .modal-body, #reserveModal .modal-body {
+  background: #d1c4e9; }
