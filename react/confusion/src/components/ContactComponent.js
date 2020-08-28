@@ -154,7 +154,7 @@ class Contact extends Component {
                   <div className="form-check">
                     <Label check>
                       <Control.checkbox model=".agree" name="agree"
-                        className="form-control" /> {' '}
+                        className="form-check-input" /> {' '}
 
                       <strong>May we contact you?</strong>
                     </Label>
