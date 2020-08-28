@@ -20,8 +20,8 @@ class CommentForm extends Component {
   }
 
   handleCommentSubmit(values) {
-    console.log("Current State is: " + JSON.stringify(values));
-    alert("Current State is: " + JSON.stringify(values));
+    this.toggleCommentModal();
+    this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
   }
 
   toggleCommentModal() {
@@ -46,7 +46,7 @@ class CommentForm extends Component {
 
                 <Col sm={{ size: 12 }}>
                   <Control.select model=".rating" id="rating" name="rating">
-                    <option >1</option>
+                    <option>1</option>
                     <option>2</option>
                     <option>3</option>
                     <option>4</option>
@@ -57,17 +57,17 @@ class CommentForm extends Component {
               <Row className="form-group">
 
                 <Col sm={{ size: 12 }}>
-                  <Label htmlFor="name">Your Name</Label>
+                  <Label htmlFor="author">Your Name</Label>
                 </Col>
 
                 <Col sm={{ size: 12 }}>
-                  <Control.text model=".name" id="name" name="name" placeholder="Your Name"
+                  <Control.text model=".author" id="author" name="author" placeholder="Your Name"
                     validators={{
                       required, minLength: minLength(3), maxLength: maxLength(15)
                     }} />
                   <Errors
                     className="text-danger"
-                    model=".firstname"
+                    model=".author"
                     show="touched"
                     message={{
                       required: 'Required',
@@ -82,7 +82,7 @@ class CommentForm extends Component {
                   <Label htmlFor="comment">Comment</Label>
                 </Col>
                 <Col sm={{ size: 12 }}>
-                  <Control.textarea model="comment" id="comment" name="comment" />
+                  <Control.textarea model=".comment" id="comment" name="comment" />
                 </Col>
               </Row>
               <Button type="submit" value="submit" color="primary">
@@ -99,7 +99,7 @@ class CommentForm extends Component {
   }
 }
 
-function RenderComments({ comments }) {
+function RenderComments({ comments, addComment, dishId }) {
   const rComment = comments.map((comment) => {
     return (
       <li key={comment.id} className="mb-3">
@@ -113,7 +113,7 @@ function RenderComments({ comments }) {
   return (
     <div>
       {rComment}
-      < CommentForm />
+      <CommentForm dishId={dishId} addComment={addComment} />
     </div>
   );
 }
@@ -151,7 +151,9 @@ const Detail = (props) => {
           <div className="col-12 col-md-5 m-1">
             <h4>Comments</h4>
             <ul className="list-unstyled">
-              <RenderComments comments={props.comments} />
+              <RenderComments comments={props.comments}
+                addComment={props.addComment}
+                dishId={props.dish.id} />
             </ul>
           </div>
         </div >
